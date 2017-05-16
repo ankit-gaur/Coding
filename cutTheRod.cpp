@@ -39,21 +39,31 @@ const int LOGMAXN = log2(MAXN) + 3;
 int prices[1000];
 
 //make table to memorize
+int val[1000];
+int countIter = 0;
 int maxVal(int n)
 {
-	int max = 0;
+	countIter++;
+	int maxvalue = 0;
 	for(int i = 1; i<=n; i++)
-	{
-		int p = prices[i] + maxVal(n-i);
-		if(p>max) max = p;
+	{   
+		if(val[n-i]!=-1)
+		{
+			maxvalue = max(maxvalue,prices[i]+val[n-i]);
+		}else{
+			val[n-i] = maxVal(n-i);
+			maxvalue = max(maxvalue,prices[i]+val[n-i]);
+		}	
 	}
-	return max;
+	return maxvalue;
 }
 
 int main()
 {
    int n;
    cin>>n;
+   fill_n(val,1000,-1);
+   val[0] = 0;
    prices[0] = 0;
    rep(i,n)
    {
@@ -63,6 +73,8 @@ int main()
    }
  
  cout<<maxVal(n);
+ el;
+ cout<<countIter;
 
    return 0;
 }

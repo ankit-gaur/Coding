@@ -1,0 +1,11 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+      int n,k;
+      cin>>n>>k;
+      int ans = (-5+sqrt(4825-20*k))/10;
+      cout<<ans;
+      return 0;
+}

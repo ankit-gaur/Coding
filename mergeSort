@@ -1,0 +1,79 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef vector< int > vi;
+
+void merge(vi left, vi right, vi& v)
+{
+    int i = 0; int k = 0; int j = 0;
+    int nl = left.size();
+    int nr = right.size();
+    while(i<nl&&j<nr)
+    {   
+        if(left[i]<=right[j])
+        {
+            v[k] = left[i];
+            i++;
+        }else{
+            v[k] = right[j];
+            j++;
+        }
+        k++;
+    }
+    while(i<nl)
+    {
+        v[k] = left[i];
+        i++;
+        k++;
+    }
+    while(j<nr)
+    {
+        v[k] = right[j];
+        j++;
+        k++;
+    }
+}
+void mergeSort(vi &v)
+{
+    if(v.size()<2) return;
+    int  mid = v.size()/2;
+    vi l,r;
+    for(int i = 0; i<mid; i++)
+    {
+        l.push_back(v[i]);
+    }
+    for(int i = mid ; i<v.size() ; i++)
+    {
+        r.push_back(v[i]);
+    }
+    mergeSort(r);
+    mergeSort(l);
+    merge(l,r,v);
+    
+}
+
+int main()
+{
+    int t;
+    cin>>t;
+    for(int i = 0 ; i < t; i++)
+    {
+        int n; 
+        cin>>n;
+        vi v;
+        for(int j = 0 ; j < n ; j++)
+        {
+            int x;
+            cin>>x;
+            v.push_back(x);
+        }
+        
+        mergeSort(v);
+        
+        for(int i = n-1; i>=0; i--)
+        {
+            cout<<v[i]<<" ";
+        }
+        cout<<endl;
+        
+    }
+}

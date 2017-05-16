@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#include<sys/time.h>
 using namespace std;
 
 #define V vector
@@ -36,11 +37,22 @@ const LL linf = numeric_limits<LL>::max();
 const double EPS = 1e-7;  
 const int MAXN = 10000001; 
 const int LOGMAXN = log2(MAXN) + 3;
-int prices[1000];
+int prices[MAXN];
 
 //make table to memorize
-int val[1000];
+int val[MAXN];
 int countIter = 0;
+
+
+long long int curTimeMilli()
+{
+	timeval curTime;
+gettimeofday(&curTime, NULL);
+long long int ms = curTime.tv_sec * 1000 + curTime.tv_usec / 1000;
+return ms;
+}
+
+
 int maxVal(int n)
 {
 	countIter++;
@@ -72,9 +84,38 @@ int main()
    	 prices[i+1] = p;
    }
  
- cout<<maxVal(n);
+ LL t1 = curTimeMilli(); 
+
+ cout<<maxVal(n); //max value using top-down approch
+
+ LL t2 = curTimeMilli();
+
  el;
- cout<<countIter;
+ cout<<"Iteration in top-down approach "<<countIter<<" which is equal to the value of n";
+ el;
+
+
+//bottom-up aprroach O(n2)
+
+ int values[n+1];
+ values[0] = 0;
+ 
+
+ for(int i =1 ; i<=n; i++)
+ {   values[i] =0;
+ 	for(int j = 1; j<=i; j++)
+ 	{
+ 		values[i]  = max(values[i],values[i-j]+prices[j]);
+ 	}
+ }
+
+LL t3  = curTimeMilli();
+
+ cout<<values[n]; el;
+
+ cout<<"time in top-down approach "<<t2-t1; el;
+ cout<<"time in bottom-up approach "<<t3-t2; el;
+
 
    return 0;
 }

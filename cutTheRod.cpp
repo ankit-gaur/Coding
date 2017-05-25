@@ -55,7 +55,6 @@ return ms;
 
 int maxVal(int n)
 {
-	countIter++;
 	int maxvalue = 0;
 	for(int i = 1; i<=n; i++)
 	{   
@@ -90,8 +89,6 @@ int main()
 
  LL t2 = curTimeMilli();
 
- el;
- cout<<"Iteration in top-down approach "<<countIter<<" which is equal to the value of n";
  el;
 
 

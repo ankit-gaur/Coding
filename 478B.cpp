@@ -8,7 +8,7 @@ typedef long long LL;
 const int inf = numeric_limits<int>::max();
 const int MAXN = 10000001; 
 
-LL nc2(int n)
+LL nc2(LL n)
 {
 	return (LL)(n*(n-1)/2);
 }
@@ -16,13 +16,13 @@ LL nc2(int n)
 int main()
 { 
    
-   int n,m;
+   LL n,m;
    cin>>n>>m;
     
-   int k = n/m;
-   int r = n%m;
+   LL k = n/m;
+   LL r = n%m;
 
-   LL min = (m-r)*nc2(k) + r*nc2(k+1);
+   LL min = (LL)(m-r)*(LL)nc2(k) + (LL)r*(LL)nc2(k+1);
    LL max = nc2(n-m+1);
 
    cout<<min<<" "<<max;

@@ -56,8 +56,8 @@ void buildNode(int node, int start, int end){
 void updateNode(int node, int start, int end, int idx, int value){
 	
 	if(start==end){ //leaf node, star == end == idx
-		arr[idx] = value;
-		segtree[idx] = value;
+		arr[idx] += value;
+		segtree[idx] += value;
 		return;
 	}
 
@@ -76,6 +76,29 @@ void updateNode(int node, int start, int end, int idx, int value){
 	segtree[node] = segtree[2*node+1] + segtree[2*node + 2]; //update the parent
 
 	return;
+}
+
+void updateRange(int node, int start, int end, int l, int r, int value)
+{
+	if(start>r||l>end){ // this node is not in the range
+		return;
+	}
+	if(start==end){ //LEAF NODE
+
+		segtree[start] += value;
+
+	}
+
+	int mid = start  + (end-start)/2;
+
+	updateRange(2*node+1, start, mid, l, r , value); //update left subtree
+	updateRange(2*node+2, mid+1, end, l, r, value); // update right subtree
+
+	segtree[node] = segtree[2*node+1] + segtree[2*node+2];
+
+	return;
+
+
 }
 
 int query(int node, int start, int end, int left, int right){

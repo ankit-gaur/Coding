@@ -38,8 +38,31 @@ const int MAXN = 10000001;
 const int LOGMAXN = log2(MAXN) + 3;
 
 int main()
-{
-  
-
-   return 0;
+{  
+ int k;
+ string s;
+ cin>>k;
+ cin>>s;
+ int temp = 0,r = 0, l = 0, ans = 0;  
+ for(int i = 0; i<s.size();i++){
+ 	if(s[i]='1')temp++;
+ 	if(temp==k){
+ 		r=i;
+ 		ans = 1;
+ 		break;
+ 	}
+ }
+ for(int i=r+1; i<s.size(); i++){
+ 	if(s[i]=='0')ans++;
+ 	else{
+ 		int l2 = l+1;
+ 		while(l2<v.size()&&s[l2]!='1'){
+ 			l2++;
+ 		}
+ 		ans = l2 - l;
+ 		l = l2;
+ 	}
+ }
+ cout<<ans;
+ return 0;
 }

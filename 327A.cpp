@@ -6,6 +6,10 @@ using namespace std;
 const int inf = numeric_limits<int>::max();
 const int MAXN = 10000001; 
 
+
+
+
+//Can be solved using dp in O(n2)
 int main()
 { 
   int n; cin>>n;

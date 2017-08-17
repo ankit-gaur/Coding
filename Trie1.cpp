@@ -58,7 +58,9 @@ bool search(TrieNode * root, const string key){
 	}
 	return(crawler->isLeaf);
 }	
+string autocomplete(TrieNode* root, const string key){
 
+}
 int main(){
 	
 	int n,q;

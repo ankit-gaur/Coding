@@ -24,33 +24,16 @@ int main(){
 	cin>>s;
 	int n = s.size();
 	int as[n+2];
-	int bs[n+2];
 	as[0] = 0;
-	bs[0] = 0;
 	for(int i = 0; i<n; i++){
 		if(s[i]=='a')
 			as[i+1] = as[i] + 1;
-		else as[i+1] = as[i];
-		if(s[i]=='b'){
-			bs[i+1] = bs[i]+1;
-		}else bs[i+1] = bs[i];	
+		else as[i+1] = as[i];	
 	}	
 	as[n+1] = as[n];
-	bs[n+1] = bs[n];
-	/*for(int i = 0; i<=n+1; i++){
-		cout<<bs[i]<<" ";
+	for(int i = 0; i<=n+1; i++){
+		cout<<as[i]<<" ";
 	}
-	cout<<endl;*/
-	int maxl = 0;
-	for(int i = 0; i<=n; i++){
-		for(int j = n; j>=i; j--){
-			int alen = as[i] + as[n+1] - as[j];
-			int blen = bs[j] - bs[i];
-			int l = alen + blen;
-			if(maxl<l)maxl = l;
-			//cout<<l<<endl;
-		}
-	}
-	cout<<maxl;
+	cout<<endl;
 	return 0;
 }

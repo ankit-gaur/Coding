@@ -1,0 +1,30 @@
+void setup() {
+  //start serial connection
+  Serial.begin(9600);
+  pinMode(2, INPUT_PULLUP);
+  pinMode(12, OUTPUT);
+
+}
+long y = 0;
+bool flag = false;
+void loop() {
+  //read the pushbutton value into a variable
+    int a ;
+    while(1){
+      a = digitalRead(2);
+      if(a==LOW)
+      {
+        flag = !flag;
+       
+        if(!flag){
+           digitalWrite(12,LOW);
+            y = millis();
+        Serial.println(y);
+        }else{
+          digitalWrite(12,HIGH);
+        }
+        delay(200);
+        break;
+      }
+    }
+}

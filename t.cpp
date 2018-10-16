@@ -109,6 +109,6 @@ int main()
      el;
    }
    cout<<graph[4].size();
-   cout<<maxNodes(1,T);
+   cout<<maxNodes(1,T)<<endl;
    return 0;
 }
